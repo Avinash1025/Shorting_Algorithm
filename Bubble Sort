@@ -1,0 +1,52 @@
+#include ".\fillShow.c"
+
+void bubbleSort(iType *list, int n);
+
+int compCount=0;
+int swapCount=0;
+
+int main()
+{
+    int n;
+    iType *list;
+    printf("Enter the current size: ");
+    scanf("%d", &n);
+
+    list = generateFill(n);
+    show(list, n);
+    bubbleSort(list, n);
+    show(list, n);
+
+    printf("Count of Comparisions: %d\nCount of swaps: %d\n", compCount, swapCount);
+
+    free(list);
+    return 0;
+}
+
+void bubbleSort(iType *list, int n)
+{
+    int i, current, pass;
+    iType temp;
+
+    current = n-1;
+    //outer loop for n-1 passes
+    for (pass=0; pass<n-1; ++pass)
+    {
+        //inner loop to compare adjacent items
+        for (i=0; i<current; ++i)
+        {
+            //++compCount;
+            if (list[i]>list[i+1])
+            {
+                //++swapCount;
+                temp = list[i];
+                list[i] = list[i+1];
+                list[i+1]= temp;
+                
+            }
+        }
+        //system("pause");
+        //show(list, n);
+        --current;
+    }
+}
